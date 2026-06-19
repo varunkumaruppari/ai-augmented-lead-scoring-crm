@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: leadscore_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_secure_password
+      POSTGRES_DB: leadscore
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Auto-run database schema initialization on startup if db is empty
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./database/demo_seed.sql:/docker-entrypoint-initdb.d/2_demo_seed.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d leadscore"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: leadscore_backend
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DATABASE_URL: postgresql://postgres:postgres_secure_password@db:5432/leadscore?sslmode=disable
+      JWT_SECRET: production_jwt_secret_please_change_in_real_env_982347
+      JWT_REFRESH_SECRET: production_jwt_refresh_secret_please_change_in_real_env_829374
+      JWT_EXPIRES_IN: 15m
+      JWT_REFRESH_EXPIRES_IN: 7d
+      AI_PROVIDER: mock
+      FRONTEND_URL: http://localhost:8080
+      ENABLE_AUDIT_LOGS: "true"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build: ./frontend
+    container_name: leadscore_frontend
+    restart: always
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      - VITE_API_URL=http://localhost:5000/api/v1
+
+volumes:
+  pgdata:
+    driver: local
