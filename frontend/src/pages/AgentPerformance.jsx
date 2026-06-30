@@ -148,11 +148,11 @@ export default function AgentPerformance() {
       {/* Rankings Leaderboard */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Top 3 Podium widgets */}
-        <div className="card lg:col-span-1 p-6 space-y-6 bg-slate-900 text-white border-none shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="card lg:col-span-1 p-6 space-y-6 bg-white border border-slate-100 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
           <div>
-            <h2 className="text-xl font-black heading-font tracking-tight text-white flex items-center gap-2">
-              <Award size={20} className="text-yellow-400" />
+            <h2 className="text-xl font-black heading-font tracking-tight text-slate-900 flex items-center gap-2">
+              <Award size={20} className="text-yellow-500" />
               Leaderboard Rankings
             </h2>
             <p className="text-xs text-slate-400 font-medium">Performance rankings based on CRM parameters.</p>
@@ -162,16 +162,16 @@ export default function AgentPerformance() {
             {sortedAgents.slice(0, 3).map((agent, index) => {
               const medals = ['🥇', '🥈', '🥉'];
               return (
-                <div key={agent.id} className="p-4 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between group hover:bg-white/[0.08] transition-all">
+                <div key={agent.id} className="p-4 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-between group hover:bg-white transition-all">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{medals[index] || `#${index + 1}`}</span>
                     <div>
-                      <h4 className="font-bold text-sm text-white truncate max-w-[140px]">{agent.full_name}</h4>
+                      <h4 className="font-bold text-sm text-slate-900 truncate max-w-[140px]">{agent.full_name}</h4>
                       <p className="text-[10px] text-slate-400 font-semibold">{agent.email}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-lg font-black text-yellow-400 heading-font">{agent.performance_score}</span>
+                    <span className="text-lg font-black text-slate-900 heading-font">{agent.performance_score}</span>
                     <p className="text-[9px] text-slate-400 font-bold uppercase">CRM Score</p>
                   </div>
                 </div>

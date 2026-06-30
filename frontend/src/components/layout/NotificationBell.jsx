@@ -25,15 +25,15 @@ const formatTimeAgo = (dateStr) => {
 };
 
 const TYPE_ICONS = {
-  new_lead: { icon: UserPlus, color: 'text-blue-500 bg-blue-50' },
-  lead_assigned: { icon: Target, color: 'text-indigo-500 bg-indigo-50' },
-  hot_lead_alert: { icon: Flame, color: 'text-red-500 bg-red-50' },
-  followup_due: { icon: ClockIcon, color: 'text-amber-500 bg-amber-50' },
-  followup_overdue: { icon: AlertTriangle, color: 'text-rose-500 bg-rose-50' },
-  lead_converted: { icon: Sparkles, color: 'text-emerald-500 bg-emerald-50' },
-  lead_lost: { icon: X, color: 'text-slate-500 bg-slate-50' },
-  revenue_milestone: { icon: TrendingUp, color: 'text-violet-500 bg-violet-50' },
-  agent_achievement: { icon: Award, color: 'text-yellow-500 bg-yellow-50' }
+  new_lead: { icon: UserPlus, color: 'text-blue-700 bg-blue-50 border border-blue-200' },
+  lead_assigned: { icon: Target, color: 'text-indigo-700 bg-indigo-50 border border-indigo-200' },
+  hot_lead_alert: { icon: Flame, color: 'text-red-700 bg-red-50 border border-red-200' },
+  followup_due: { icon: ClockIcon, color: 'text-amber-700 bg-amber-50 border border-amber-200' },
+  followup_overdue: { icon: AlertTriangle, color: 'text-rose-700 bg-rose-50 border border-rose-200' },
+  lead_converted: { icon: Sparkles, color: 'text-emerald-700 bg-emerald-50 border border-emerald-200' },
+  lead_lost: { icon: X, color: 'text-slate-650 bg-slate-50 border border-slate-200' },
+  revenue_milestone: { icon: TrendingUp, color: 'text-violet-750 bg-violet-50 border border-violet-200' },
+  agent_achievement: { icon: Award, color: 'text-yellow-800 bg-yellow-50 border border-yellow-250' }
 };
 
 // Fallback Clock Icon
@@ -154,14 +154,14 @@ export default function NotificationBell() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Notification Banner Dropdown Trigger */}
+      {/* Notification Trigger Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 text-slate-500 hover:text-blue-600 rounded-xl hover:bg-slate-100/80 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+        className="relative p-2 text-slate-500 hover:text-indigo-650 rounded-xl hover:bg-slate-100 border border-transparent hover:border-slate-200 transition-all focus:outline-none"
       >
-        <Bell size={20} />
+        <Bell size={18} />
         {unreadCount > 0 && (
-          <span className="absolute top-1.5 right-1.5 w-5 h-5 bg-red-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm animate-pulse">
+          <span className="absolute top-1 right-1 w-4 h-4 bg-rose-650 text-white rounded-full text-[9px] font-black flex items-center justify-center border-2 border-white shadow-sm animate-pulse">
             {unreadCount}
           </span>
         )}
@@ -174,49 +174,49 @@ export default function NotificationBell() {
             setIsOpen(true);
             setBannerNotif(null);
           }}
-          className="fixed top-4 right-4 z-50 max-w-sm w-80 bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border border-slate-800 flex items-start gap-3 cursor-pointer hover:bg-slate-800/90 transition-all animate-slide-in"
+          className="fixed top-4 right-4 z-50 max-w-sm w-80 bg-white/95 text-slate-805 p-4 rounded-2xl shadow-xl border border-slate-200/90 backdrop-blur-md flex items-start gap-3 cursor-pointer hover:bg-slate-50/95 transition-all animate-slide-in"
         >
-          <div className="p-2 bg-blue-500/20 rounded-xl text-blue-400 shrink-0">
-            <Bell size={16} />
+          <div className="p-2 bg-indigo-50 rounded-xl text-indigo-700 border border-indigo-200 shrink-0">
+            <Bell size={15} />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold uppercase tracking-wider text-blue-400">Real-Time Alert</p>
-            <p className="text-sm font-bold truncate mt-0.5">{bannerNotif.title}</p>
-            <p className="text-xs text-slate-300 line-clamp-2 mt-0.5">{bannerNotif.message}</p>
+            <p className="text-[9px] font-black uppercase tracking-widest text-indigo-650">Real-Time Alert</p>
+            <p className="text-xs font-bold truncate mt-0.5 text-slate-900">{bannerNotif.title}</p>
+            <p className="text-[11px] text-slate-500 line-clamp-2 mt-0.5 leading-relaxed font-semibold">{bannerNotif.message}</p>
           </div>
           <button 
             onClick={(e) => {
               e.stopPropagation();
               setBannerNotif(null);
             }} 
-            className="text-slate-400 hover:text-white"
+            className="text-slate-400 hover:text-slate-700"
           >
-            <X size={14} />
+            <X size={13} />
           </button>
         </div>
       )}
 
       {/* Notifications Dropdown Panel */}
       {isOpen && (
-        <div className="absolute right-0 mt-3 w-96 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden z-50 animate-fade-in">
+        <div className="absolute right-0 mt-2 w-96 bg-white/95 border border-slate-200/90 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden z-50 animate-fade-in">
           {/* Header */}
-          <div className="p-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+          <div className="p-4 bg-slate-50/50 border-b border-slate-100 flex items-center justify-between">
             <div>
-              <h3 className="font-black text-slate-900 heading-font text-base">Notifications</h3>
-              <p className="text-[11px] text-slate-400 font-semibold">{unreadCount} unread alerts</p>
+              <h3 className="font-black text-slate-900 heading-font text-sm uppercase tracking-wider">Notifications</h3>
+              <p className="text-[10px] text-slate-500 font-bold mt-0.5">{unreadCount} unread system alerts</p>
             </div>
             {unreadCount > 0 && (
               <button 
                 onClick={handleMarkAllRead}
-                className="text-xs text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 hover:underline"
+                className="text-xs text-indigo-650 hover:text-indigo-800 font-bold flex items-center gap-1.5 hover:underline"
               >
                 <CheckSquare size={13} /> Mark all read
               </button>
             )}
           </div>
 
-          {/* Filters */}
-          <div className="px-4 py-2 border-b border-slate-100 flex gap-1.5 overflow-x-auto text-[11px] font-bold text-slate-500">
+          {/* Filters tabs */}
+          <div className="px-4 py-2 border-b border-slate-100 flex gap-1.5 overflow-x-auto text-[10px] font-bold text-slate-400">
             {[
               { id: 'all', label: 'All' },
               { id: 'leads', label: 'Leads' },
@@ -226,7 +226,11 @@ export default function NotificationBell() {
               <button
                 key={f.id}
                 onClick={() => setFilterType(f.id)}
-                className={`px-3 py-1 rounded-full transition-colors ${filterType === f.id ? 'bg-blue-600 text-white' : 'bg-slate-100 hover:bg-slate-200'}`}
+                className={`px-3 py-1 rounded-full transition-all border
+                  ${filterType === f.id 
+                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm' 
+                    : 'bg-slate-50 text-slate-550 border-slate-200 hover:bg-slate-100'
+                  }`}
               >
                 {f.label}
               </button>
@@ -237,12 +241,12 @@ export default function NotificationBell() {
           <div className="max-h-[350px] overflow-y-auto divide-y divide-slate-100">
             {filteredList.length === 0 ? (
               <div className="p-8 text-center text-slate-400">
-                <CircleDot size={24} className="mx-auto text-slate-200 mb-2" />
-                <p className="text-sm font-medium">No recent notifications</p>
+                <CircleDot size={20} className="mx-auto text-slate-300 mb-2" />
+                <p className="text-xs font-semibold">No recent notifications</p>
               </div>
             ) : (
               filteredList.map(notif => {
-                const config = TYPE_ICONS[notif.type] || { icon: HelpCircle, color: 'text-slate-500 bg-slate-50' };
+                const config = TYPE_ICONS[notif.type] || { icon: HelpCircle, color: 'text-slate-500 bg-slate-50 border border-slate-200' };
                 const Icon = config.icon;
                 
                 return (
@@ -253,34 +257,34 @@ export default function NotificationBell() {
                       if (!notif.is_read) handleMarkRead(notif.id);
                       if (notif.lead_id) navigate(`/leads/${notif.lead_id}`);
                     }}
-                    className={`p-4 flex gap-3 cursor-pointer hover:bg-slate-50 transition-colors relative
-                      ${!notif.is_read ? 'bg-blue-50/20' : ''}`}
+                    className={`p-4 flex gap-3 cursor-pointer hover:bg-slate-50/60 transition-colors relative
+                      ${!notif.is_read ? 'bg-indigo-50/15' : ''}`}
                   >
-                    {/* Unread indicator */}
+                    {/* Unread indicator dot */}
                     {!notif.is_read && (
-                      <span className="absolute top-5 left-1 w-1.5 h-1.5 bg-blue-600 rounded-full" />
+                      <span className="absolute top-5 left-1.5 w-1.5 h-1.5 bg-indigo-600 rounded-full" />
                     )}
 
                     {/* Icon Bubble */}
                     <div className={`p-2.5 rounded-xl shrink-0 ${config.color}`}>
-                      <Icon size={16} />
+                      <Icon size={14} />
                     </div>
 
                     {/* Content */}
                     <div className="flex-1 min-w-0 space-y-0.5">
-                      <p className="text-xs font-bold text-slate-900 truncate pr-6">{notif.title}</p>
-                      <p className="text-xs text-slate-500 font-medium leading-relaxed line-clamp-2">{notif.message}</p>
-                      <p className="text-[10px] text-slate-400 font-semibold mt-1">{formatTimeAgo(notif.created_at)}</p>
+                      <p className="text-xs font-bold text-slate-800 truncate pr-6">{notif.title}</p>
+                      <p className="text-[11px] text-slate-500 font-semibold leading-relaxed line-clamp-2">{notif.message}</p>
+                      <p className="text-[9px] text-slate-400 font-semibold mt-1">{formatTimeAgo(notif.created_at)}</p>
                     </div>
 
                     {/* Inline Mark Read Button */}
                     {!notif.is_read && (
                       <button
                         onClick={(e) => handleMarkRead(notif.id, e)}
-                        className="absolute right-4 top-4 p-1 rounded-lg text-slate-300 hover:text-blue-600 hover:bg-slate-100/60 transition-all"
+                        className="absolute right-4 top-4 p-1 rounded-lg text-slate-400 hover:text-indigo-650 hover:bg-slate-100 border border-transparent hover:border-slate-200 transition-all"
                         title="Mark as read"
                       >
-                        <Check size={14} />
+                        <Check size={13} />
                       </button>
                     )}
                   </div>
@@ -289,11 +293,11 @@ export default function NotificationBell() {
             )}
           </div>
 
-          {/* View Center Footer */}
+          {/* View Center Footer Link */}
           <Link 
             to="/notifications" 
             onClick={() => setIsOpen(false)}
-            className="block text-center py-3 bg-slate-50 border-t border-slate-100 text-xs font-bold text-blue-600 hover:text-blue-700 hover:bg-slate-100/50 transition-colors"
+            className="block text-center py-3 bg-slate-50/50 border-t border-slate-150 text-xs font-bold text-indigo-655 hover:text-indigo-800 hover:bg-slate-50 transition-colors"
           >
             View All Notifications
           </Link>
