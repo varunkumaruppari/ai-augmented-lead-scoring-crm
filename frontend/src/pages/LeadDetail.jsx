@@ -82,7 +82,7 @@ export default function LeadDetail() {
     } else if (type === 'whatsapp') {
       const cleanPhone = lead.phone.replace(/[^0-9]/g, '');
       const waPhone = cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone;
-      window.open(`https://wa.me/${waPhone}`, '_blank');
+      window.open(`https://web.whatsapp.com/send?phone=${waPhone}`, '_blank');
     }
   };
 

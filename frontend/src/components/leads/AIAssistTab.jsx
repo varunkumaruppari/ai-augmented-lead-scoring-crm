@@ -309,7 +309,7 @@ export default function AIAssistTab({ leadId, lead }) {
                       onClick={() => {
                         const cleanPhone = lead.phone.replace(/[^0-9]/g, '');
                         const waPhone = cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone;
-                        window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(insights.outreach_whatsapp)}`, '_blank');
+                        window.open(`https://web.whatsapp.com/send?phone=${waPhone}&text=${encodeURIComponent(insights.outreach_whatsapp)}`, '_blank');
                       }}
                       className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-500 hover:underline transition"
                     >
