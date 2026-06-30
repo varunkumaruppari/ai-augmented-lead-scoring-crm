@@ -125,8 +125,8 @@ ON CONFLICT (id) DO NOTHING;
 
 -- ─── SEED REPORT HISTORY ────────────────────────────────────────────────────────
 INSERT INTO report_history (id, schedule_id, name, type, format, generated_by, status) VALUES
-  ('33333333-3333-3333-3333-333333333341', '33333333-3333-3333-3333-333333333331', 'Executive Daily Digest - 2026-06-18', 'executive', 'pdf', '44694469-4469-4469-4469-446944694469', 'success'),
-  ('33333333-3333-3333-3333-333333333342', '33333333-3333-3333-3333-333333333332', 'Weekly Sales Performance - W24', 'agent', 'excel', '44694469-4469-4469-4469-446944694469', 'success')
+  ('33333333-3333-3333-3333-333333333341', '33333333-3333-3333-3333-333333333331', 'Executive Daily Digest - 2026-06-18', 'executive', 'pdf', '44444444-4444-4444-4444-444444444444', 'success'),
+  ('33333333-3333-3333-3333-333333333342', '33333333-3333-3333-3333-333333333332', 'Weekly Sales Performance - W24', 'agent', 'excel', '44444444-4444-4444-4444-444444444444', 'success')
 ON CONFLICT (id) DO NOTHING;
 
 -- ─── SEED SYSTEM METRICS ───────────────────────────────────────────────────────

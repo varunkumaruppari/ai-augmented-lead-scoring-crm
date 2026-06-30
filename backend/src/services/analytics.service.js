@@ -442,6 +442,7 @@ const getInsightsRiskOpportunityAnalysis = async () => {
   const potentialRevenue = revData.metrics.potential_revenue;
   const hotLeads = leadData.metrics.hot_leads;
   const warmLeads = leadData.metrics.warm_leads;
+  const coldLeads = leadData.metrics.cold_leads;
   const totalLeads = leadData.metrics.total_leads;
 
   const convScore = Math.min(100, (conversionRate / 20) * 100);

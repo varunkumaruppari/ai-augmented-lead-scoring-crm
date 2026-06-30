@@ -11,6 +11,11 @@ if (process.env.DATABASE_URL && process.env.DATABASE_URL !== 'in-memory') {
     connectionTimeoutMillis: 2000,
   });
 
+  pool.on('connect', (client) => {
+    client.query('SET search_path TO leadscore, public')
+      .catch(err => console.error('Error setting search path:', err));
+  });
+
   pool.on('error', (err) => {
     console.error('Unexpected database error:', err);
   });
@@ -99,7 +104,18 @@ if (process.env.DATABASE_URL && process.env.DATABASE_URL !== 'in-memory') {
     
     // Execute DDL on pg-mem database
     db.public.none(sql);
-    console.log('✅ In-memory database initialized and seeded successfully.');
+
+    // Load demo seed data
+    try {
+      const seedPath = path.join(__dirname, '../../../database/demo_seed.sql');
+      if (fs.existsSync(seedPath)) {
+        const seedSql = fs.readFileSync(seedPath, 'utf8');
+        db.public.none(seedSql);
+        console.log('✅ Demo seed data loaded into in-memory database successfully.');
+      }
+    } catch (seedErr) {
+      console.warn('⚠️ Warning: Failed to load demo seed data:', seedErr.message);
+    }
   } catch (err) {
     console.error('❌ Failed to initialize in-memory database:', err);
   }

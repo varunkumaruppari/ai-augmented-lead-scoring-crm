@@ -17,7 +17,7 @@ const formatRupees = (val) => {
 
 // Reusable Performance KPI Widget Card
 const PerformanceKPICard = ({ label, value, icon: Icon, gradient, subtext }) => (
-  <div className="card relative overflow-hidden group">
+  <div className="card relative overflow-hidden group p-5">
     <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${gradient} opacity-[0.03] rounded-full blur-xl transition-all duration-500 group-hover:scale-125`}></div>
     <div className="flex items-start justify-between">
       <div className="space-y-2">
