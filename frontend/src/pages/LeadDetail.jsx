@@ -78,7 +78,7 @@ export default function LeadDetail() {
     if (type === 'call') {
       window.location.href = `tel:${lead.phone}`;
     } else if (type === 'email' && lead.email) {
-      window.location.href = `mailto:${lead.email}`;
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${lead.email}`, '_blank');
     } else if (type === 'whatsapp') {
       const cleanPhone = lead.phone.replace(/[^0-9]/g, '');
       const waPhone = cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone;
@@ -150,7 +150,7 @@ export default function LeadDetail() {
               <Card className="p-5 space-y-5 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <Info icon={Phone} label="Phone Number" value={lead.phone} href={`tel:${lead.phone}`} />
-                  <Info icon={Mail} label="Email Address" value={lead.email || '—'} href={lead.email ? `mailto:${lead.email}` : null} />
+                  <Info icon={Mail} label="Email Address" value={lead.email || '—'} href={lead.email ? `https://mail.google.com/mail/?view=cm&fs=1&to=${lead.email}` : null} />
                   <Info icon={MapPin} label="Preferred Location" value={lead.preferred_location || '—'} />
                   <Info icon={Calendar} label="Target Purchase Timeline" value={lead.timeline_months ? `${lead.timeline_months} months` : '—'} />
                   <Info icon={User} label="Representative Agent" value={lead.agent_name || 'Unassigned'} />

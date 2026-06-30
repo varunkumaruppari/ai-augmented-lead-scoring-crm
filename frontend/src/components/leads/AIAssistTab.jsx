@@ -420,16 +420,14 @@ export default function AIAssistTab({ leadId, lead }) {
                   <div className="inline-block px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-white/10 text-white rounded-xl text-[10px] font-extrabold uppercase tracking-wider shadow-md select-all">
                     {insights.outreach_email.cta}
                   </div>
-                  {lead && lead.email && (
                     <button 
                       onClick={() => {
-                        window.location.href = `mailto:${lead.email}?subject=${encodeURIComponent(insights.outreach_email.subject)}&body=${encodeURIComponent(insights.outreach_email.body)}`;
+                        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${lead.email}&su=${encodeURIComponent(insights.outreach_email.subject)}&body=${encodeURIComponent(insights.outreach_email.body)}`, '_blank');
                       }}
-                      className="btn flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-md transition"
+                      className="btn flex items-center gap-1.5 px-4 py-2 bg-indigo-650 hover:bg-indigo-755 dark:bg-indigo-600 dark:hover:bg-indigo-655 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-md transition"
                     >
-                      <Mail size={12} /> Send Email via Client
+                      <Mail size={12} /> Send via Gmail
                     </button>
-                  )}
                 </div>
               </div>
             </div>
